@@ -40,6 +40,22 @@ return [
             'driver' => 'session',
             'provider' => 'users',
         ],
+        'user' => [
+          'driver' => 'session',
+          'provider' => 'users',
+        ],
+        'member' => [
+          'driver' => 'session',
+          'provider' => 'members',
+        ],
+        'leader' => [
+          'driver' => 'session',
+          'provider' => 'leaders',
+        ],
+        'admin' => [
+          'driver' => 'session',
+          'provider' => 'admins',
+        ],
     ],
 
     /*
@@ -64,11 +80,18 @@ return [
             'driver' => 'eloquent',
             'model' => App\Models\User::class,
         ],
-
-        // 'users' => [
-        //     'driver' => 'database',
-        //     'table' => 'users',
-        // ],
+        'members' => [
+          'driver' => 'eloquent',
+          'model' => App\Models\Member::class,
+        ],
+        'leaders' => [
+          'driver' => 'eloquent',
+          'model' => App\Models\Leader::class,
+        ],
+        'admin' => [
+          'driver' => 'eloquent',
+          'model' => App\Models\Admin::class,
+        ],
     ],
 
     /*
@@ -96,6 +119,24 @@ return [
             'table' => 'password_reset_tokens',
             'expire' => 60,
             'throttle' => 60,
+        ],
+        'members' => [
+          'provider' => 'members',
+          'table' => 'member_password_reset_tokens',
+          'expire' => 60,
+          'throttle' => 60,
+        ],
+        'leaders' => [
+          'provider' => 'leaders',
+          'table' => 'leader_password_reset_tokens',
+          'expire' => 60,
+          'throttle' => 60,
+        ],
+        'admin' => [
+          'provider' => 'admin',
+          'table' => 'admin_password_reset_tokens',
+          'expire' => 60,
+          'throttle' => 60,
         ],
     ],
 
