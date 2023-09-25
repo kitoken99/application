@@ -185,4 +185,9 @@ return [
         // 'Example' => App\Facades\Example::class,
     ])->toArray(),
 
+    /*
+   * Package Service Providers...
+   */
+    App\Providers\ViewServiceProvider::class, 
+
 ];
