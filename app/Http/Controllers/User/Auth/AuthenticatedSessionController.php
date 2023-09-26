@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Auth;
+namespace App\Http\Controllers\User\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Auth\LoginRequest;
@@ -36,7 +36,7 @@ class AuthenticatedSessionController extends Controller
       $request->session()->regenerate();
 
       $redirect_url = route($this->multi_auth_guard .'.dashboard'); // ログイン後のリダイレクト先
-
+      $redirect_url = '/';
       return redirect()->intended($redirect_url);
     }
 
@@ -51,6 +51,6 @@ class AuthenticatedSessionController extends Controller
 
       $request->session()->regenerateToken();
 
-      return to_route($this->multi_auth_guard .'.login');
+      return to_route($this->multi_auth_guard.'.login');
   }
 }

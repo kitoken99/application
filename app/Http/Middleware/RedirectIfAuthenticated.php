@@ -21,6 +21,15 @@ class RedirectIfAuthenticated
 
         foreach ($guards as $guard) {
             if (Auth::guard($guard)->check()) {
+
+                $multi_auth_guard = multi_auth_guard();
+
+                if($guard === $multi_auth_guard) {
+
+                    return to_route($multi_auth_guard .'.dashboard');
+
+                }
+
                 return redirect(RouteServiceProvider::HOME);
             }
         }

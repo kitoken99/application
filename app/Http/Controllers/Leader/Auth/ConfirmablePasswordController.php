@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Auth;
+namespace App\Http\Controllers\Leader\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
@@ -12,12 +12,18 @@ use Illuminate\View\View;
 
 class ConfirmablePasswordController extends Controller
 {
+  private $multi_auth_guard;
+
+    public function __construct()
+    {
+        $this->multi_auth_guard = multi_auth_guard();
+    }
     /**
      * Show the confirm password view.
      */
     public function show(): View
     {
-        return view('auth.confirm-password');
+      return view($this->multi_auth_guard .'.auth.confirm-password');
     }
 
     /**
@@ -36,6 +42,8 @@ class ConfirmablePasswordController extends Controller
 
         $request->session()->put('auth.password_confirmed_at', time());
 
-        return redirect()->intended(RouteServiceProvider::HOME);
+        $redirect_url = route($this->multi_auth_guard .'.dashboard'); // ログイン後のリダイレクト先
+ 
+        return redirect()->intended($redirect_url);
     }
 }

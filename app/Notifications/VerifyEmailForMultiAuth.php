@@ -6,6 +6,7 @@ use Illuminate\Auth\Notifications\VerifyEmail as BaseVerifyEmail;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\URL;
+use Illuminate\Support\Facades\Log;
 
 class VerifyEmailForMultiAuth extends BaseVerifyEmail
 {
@@ -21,10 +22,9 @@ class VerifyEmailForMultiAuth extends BaseVerifyEmail
         if (static::$createUrlCallback) {
             return call_user_func(static::$createUrlCallback, $notifiable);
         }
-
+        Log::info(static::$createUrlCallback);
         $route_name = $this->multi_auth_guard .'.verification.verify';
-
-        return URL::temporarySignedRoute(
+        $URL = URL::temporarySignedRoute(
             $route_name,
             Carbon::now()->addMinutes(Config::get('auth.verification.expire', 60)),
             [
@@ -32,5 +32,7 @@ class VerifyEmailForMultiAuth extends BaseVerifyEmail
                 'hash' => sha1($notifiable->getEmailForVerification()),
             ]
         );
+        Log::info($URL);
+        return $URL;
     }
 }

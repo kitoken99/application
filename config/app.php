@@ -159,7 +159,7 @@ return [
         /*
          * Package Service Providers...
          */
-
+        App\Providers\ViewServiceProvider::class, 
         /*
          * Application Service Providers...
          */
@@ -184,10 +184,4 @@ return [
     'aliases' => Facade::defaultAliases()->merge([
         // 'Example' => App\Facades\Example::class,
     ])->toArray(),
-
-    /*
-   * Package Service Providers...
-   */
-    App\Providers\ViewServiceProvider::class, 
-
 ];
