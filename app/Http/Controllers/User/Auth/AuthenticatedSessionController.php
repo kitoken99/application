@@ -35,8 +35,7 @@ class AuthenticatedSessionController extends Controller
 
       $request->session()->regenerate();
 
-      $redirect_url = route($this->multi_auth_guard .'.dashboard'); // ログイン後のリダイレクト先
-      $redirect_url = '/';
+      $redirect_url = route($this->multi_auth_guard .'.dashboard'); // ログイン後のリダイレクト先);
       return redirect()->intended($redirect_url);
     }
 

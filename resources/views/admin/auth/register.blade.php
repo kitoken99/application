@@ -1,8 +1,8 @@
 <x-guest-layout>
-
+  ユーザー
   <form method="POST" action="{{ route($multi_auth_guard .'.register') }}">
       @csrf
-      管理者
+
       <!-- Name -->
       <div>
           <x-input-label for="name" :value="__('Name')" />

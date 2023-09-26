@@ -15,7 +15,7 @@ class EmailVerificationPromptController extends Controller
     public function __invoke(Request $request): RedirectResponse|View
     {
         $multi_auth_guard = multi_auth_guard();
-        $intended_url = route($multi_auth_guard .'.dashboard');
+        $intended_url = route($multi_auth_guard.'.dashboard');
         $view_name = $multi_auth_guard .'.auth.verify-email';
 
         return $request->user()->hasVerifiedEmail()
