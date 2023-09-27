@@ -20,7 +20,7 @@ Route::get('/', function () {
 
 Route::get('/dashboard', function () {
     return view('dashboard');
-})->middleware(['auth:user', 'verified'])->name('dashboard');
+})->middleware(['auth:user', 'verified_for_multi_auth'])->name('dashboard');
 
 Route::middleware('auth:user')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

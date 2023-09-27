@@ -11,11 +11,18 @@ use Illuminate\View\View;
 
 class ProfileController extends Controller
 {
+  private $multi_auth_guard;
+
+    public function __construct()
+    {
+        $this->multi_auth_guard = multi_auth_guard();
+    }
     /**
      * Display the user's profile form.
      */
     public function edit(Request $request): View
     {
+      
         return view('profile.edit', [
             'user' => $request->user(),
         ]);
@@ -34,7 +41,7 @@ class ProfileController extends Controller
 
         $request->user()->save();
 
-        return Redirect::route('profile.edit')->with('status', 'profile-updated');
+        return Redirect::route($this->multi_auth_guard.'.profile.edit')->with('status', 'profile-updated');
     }
 
     /**
@@ -55,6 +62,6 @@ class ProfileController extends Controller
         $request->session()->invalidate();
         $request->session()->regenerateToken();
 
-        return Redirect::to('/');
+        return Redirect::to('/user');
     }
 }

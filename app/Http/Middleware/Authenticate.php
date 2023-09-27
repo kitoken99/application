@@ -17,7 +17,7 @@ class Authenticate extends Middleware
             $multi_auth_guard = multi_auth_guard();
 
             if(! is_null($multi_auth_guard)) {
-
+              
                 return route($multi_auth_guard .'.login');
 
             }

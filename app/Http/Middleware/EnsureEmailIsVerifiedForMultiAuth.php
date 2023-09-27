@@ -7,7 +7,6 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\URL;
 use Symfony\Component\HttpFoundation\Response;
-use Illuminate\Support\Facades\Log;
 
 class EnsureEmailIsVerifiedForMultiAuth
 {
@@ -20,7 +19,6 @@ class EnsureEmailIsVerifiedForMultiAuth
     {
         $multi_auth_guard = multi_auth_guard();
         $redirect_route_name = $multi_auth_guard.'.verification.notice';
-        Log::debug("aaaaaaaaaaa");
         if (! $request->user() ||
             ($request->user() instanceof MustVerifyEmail &&
                 ! $request->user()->hasVerifiedEmail())) {
