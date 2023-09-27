@@ -14,7 +14,7 @@ class EmailVerificationNotificationController extends Controller
     public function store(Request $request): RedirectResponse
     {
         $multi_auth_guard = multi_auth_guard();
-        $intended_url = route($multi_auth_guard .'.dashboard');
+        $intended_url = route($multi_auth_guard.'.dashboard');
 
         if ($request->user()->hasVerifiedEmail()) {
             return redirect()->intended($intended_url);

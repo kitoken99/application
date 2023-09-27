@@ -47,13 +47,11 @@ class RegisteredUserController extends Controller
             'email' => $request->email,
             'password' => Hash::make($request->password),
         ]);
-
         event(new Registered($user));
 
-        Auth::login($user);
+        auth($this->multi_auth_guard)->login($user);
 
-        $redirect_url = route($this->multi_auth_guard .'.dashboard'); // ログイン後のリダイレクト先
-
+        $redirect_url = route($this->multi_auth_guard.'.dashboard'); // ログイン後のリダイレクト先
         return redirect()->intended($redirect_url);
     }
 }

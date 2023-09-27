@@ -8,6 +8,7 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\View\View;
+use Illuminate\Support\Facades\Log;
 
 class AuthenticatedSessionController extends Controller
 {
@@ -34,10 +35,8 @@ class AuthenticatedSessionController extends Controller
       $request->authenticate();
 
       $request->session()->regenerate();
-
-      $redirect_url = route($this->multi_auth_guard .'.dashboard'); // ログイン後のリダイレクト先
-      $redirect_url = '/';
-      return redirect()->intended($redirect_url);
+      $redirect_url = route($this->multi_auth_guard .'.dashboard'); // ログイン後のリダイレクト先);
+       return redirect()->intended($redirect_url);
     }
 
   /**
@@ -51,6 +50,6 @@ class AuthenticatedSessionController extends Controller
 
       $request->session()->regenerateToken();
 
-      return to_route($this->multi_auth_guard .'.login');
+      return to_route($this->multi_auth_guard.'.login');
   }
 }

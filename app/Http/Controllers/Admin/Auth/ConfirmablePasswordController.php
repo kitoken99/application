@@ -12,7 +12,7 @@ use Illuminate\View\View;
 
 class ConfirmablePasswordController extends Controller
 {
-  private $multi_auth_guard;
+    private $multi_auth_guard;
 
     public function __construct()
     {

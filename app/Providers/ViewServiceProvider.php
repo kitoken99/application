@@ -24,6 +24,8 @@ class ViewServiceProvider extends ServiceProvider
         $multi_auth_guard = multi_auth_guard();
         if(! is_null($multi_auth_guard)) {
             $view->with('multi_auth_guard', $multi_auth_guard);
+        }else{
+          $view->with('multi_auth_guard', 'user');
         }
     });
     }

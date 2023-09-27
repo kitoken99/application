@@ -28,9 +28,9 @@ Route::get('/', function () {
 
 Route::get('/dashboard', function () {
     return view('dashboard');
-})->middleware(['auth', 'verified_for_multi_auth'])->name('dashboard');
+})->middleware(['auth:member', 'verified_for_multi_auth'])->name('dashboard');
 
-Route::middleware('auth')->group(function () {
+Route::middleware('auth:member')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
